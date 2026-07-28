@@ -1,0 +1,35 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 002-create-authors-table
+      author: kubra
+
+      changes:
+
+        - createTable:
+            tableName: authors
+
+            columns:
+
+              - column:
+                  name: id
+                  type: BIGSERIAL
+
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_authors
+                    nullable: false
+
+              - column:
+                  name: first_name
+                  type: VARCHAR(100)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: last_name
+                  type: VARCHAR(100)
+
+                  constraints:
+                    nullable: false

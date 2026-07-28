@@ -1,0 +1,61 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 005-create-app-users-table
+      author: kubra
+
+      changes:
+
+        - createTable:
+            tableName: app_users
+
+            columns:
+
+              - column:
+                  name: id
+                  type: BIGSERIAL
+
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_app_users
+                    nullable: false
+
+              - column:
+                  name: first_name
+                  type: VARCHAR(100)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: last_name
+                  type: VARCHAR(100)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: email
+                  type: VARCHAR(150)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: role
+                  type: VARCHAR(20)
+
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: app_users
+            columnNames: email
+            constraintName: uk_app_users_email

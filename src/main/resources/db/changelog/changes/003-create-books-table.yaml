@@ -1,0 +1,72 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 003-create-books-table
+      author: kubra
+
+      changes:
+
+        - createTable:
+            tableName: books
+
+            columns:
+
+              - column:
+                  name: id
+                  type: BIGSERIAL
+
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_books
+                    nullable: false
+
+              - column:
+                  name: title
+                  type: VARCHAR(200)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: isbn
+                  type: VARCHAR(20)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: price
+                  type: NUMERIC(10,2)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: stock
+                  type: INTEGER
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: category_id
+                  type: BIGINT
+
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: books
+            columnNames: isbn
+            constraintName: uk_books_isbn
+
+        - addForeignKeyConstraint:
+            baseTableName: books
+            baseColumnNames: category_id
+
+            referencedTableName: categories
+            referencedColumnNames: id
+
+            constraintName: fk_books_category
+
+            onDelete: RESTRICT
