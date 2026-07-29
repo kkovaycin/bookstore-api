@@ -4,15 +4,25 @@ databaseChangeLog:
       file: db/changelog/changes/001-create-categories-table.yaml
 
   - include:
-      file: db/changelog/changes/002-create-authors-table.yaml
+      file: db/changelog/changes/002-create-products-table.yaml
 
   - include:
-      file: db/changelog/changes/003-create-books-table.yaml
+      file: db/changelog/changes/003-create-roles-table.yaml
 
   - include:
-      file: db/changelog/changes/004-create-book-authors-table.yaml
+      file: db/changelog/changes/004-create-users-table.yaml
 
   - include:
-      file: db/changelog/changes/005-create-users-table.yaml
+      file: db/changelog/changes/005-insert-roles.yaml
+
+  - include:
+      file: db/changelog/changes/006-insert-admin-user.yaml
+
+  - include:
+      file: db/changelog/changes/007-insert-categories.yaml
+
+  - include:
+      file: db/changelog/changes/008-insert-products.yaml
+
 
 

@@ -30,16 +30,9 @@ public class Category {
     )
     private String name;
 
-    /*
-     * JPA için gerekli parametresiz constructor.
-     */
     protected Category() {
     }
 
-    /*
-     * Yeni kategori oluştururken kullanılır.
-     * ID veritabanı tarafından otomatik oluşturulur.
-     */
     public Category(String name) {
         this.name = name;
     }
@@ -52,9 +45,6 @@ public class Category {
         return name;
     }
 
-    /*
-     * PUT işlemi sırasında kategori adını günceller.
-     */
     public void update(String name) {
         this.name = name;
     }

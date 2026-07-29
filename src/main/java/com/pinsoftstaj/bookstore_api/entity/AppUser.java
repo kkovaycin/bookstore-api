@@ -1,14 +1,6 @@
 package com.pinsoftstaj.bookstore_api.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
 @Entity
 @Table(
@@ -17,6 +9,10 @@ import jakarta.persistence.UniqueConstraint;
                 @UniqueConstraint(
                         name = "uk_app_users_email",
                         columnNames = "email"
+                ),
+                @UniqueConstraint(
+                        name = "uk_app_users_username",
+                        columnNames = "username"
                 )
         }
 )
@@ -42,6 +38,12 @@ public class AppUser {
 
     @Column(
             nullable = false,
+            length = 100
+    )
+    private String username;
+
+    @Column(
+            nullable = false,
             length = 150
     )
     private String email;
@@ -52,10 +54,16 @@ public class AppUser {
     )
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(
+    @ManyToOne(
+            fetch = FetchType.EAGER,
+            optional = false
+    )
+    @JoinColumn(
+            name = "role_id",
             nullable = false,
-            length = 20
+            foreignKey = @ForeignKey(
+                    name = "fk_app_users_role"
+            )
     )
     private Role role;
 
@@ -65,12 +73,14 @@ public class AppUser {
     public AppUser(
             String firstName,
             String lastName,
+            String username,
             String email,
             String password,
             Role role
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -86,6 +96,10 @@ public class AppUser {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {

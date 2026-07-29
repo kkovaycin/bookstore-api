@@ -1,0 +1,25 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 005-insert-roles
+      author: kubra
+
+      changes:
+
+        - insert:
+            tableName: roles
+
+            columns:
+
+              - column:
+                  name: name
+                  value: ADMIN
+
+        - insert:
+            tableName: roles
+
+            columns:
+
+              - column:
+                  name: name
+                  value: USER

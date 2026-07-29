@@ -11,4 +11,6 @@ public interface AppUserRepository
     Optional<AppUser> findByEmailIgnoreCase(String email);
 
     boolean existsByEmailIgnoreCase(String email);
+
+    boolean existsByUsernameIgnoreCase(String username);
 }

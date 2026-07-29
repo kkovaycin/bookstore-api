@@ -1,13 +1,13 @@
 databaseChangeLog:
 
   - changeSet:
-      id: 003-create-books-table
+      id: 002-create-products-table
       author: kubra
 
       changes:
 
         - createTable:
-            tableName: books
+            tableName: products
 
             columns:
 
@@ -17,35 +17,7 @@ databaseChangeLog:
 
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_books
-                    nullable: false
-
-              - column:
-                  name: title
-                  type: VARCHAR(200)
-
-                  constraints:
-                    nullable: false
-
-              - column:
-                  name: isbn
-                  type: VARCHAR(20)
-
-                  constraints:
-                    nullable: false
-
-              - column:
-                  name: price
-                  type: NUMERIC(10,2)
-
-                  constraints:
-                    nullable: false
-
-              - column:
-                  name: stock
-                  type: INTEGER
-
-                  constraints:
+                    primaryKeyName: pk_products
                     nullable: false
 
               - column:
@@ -55,18 +27,30 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
-        - addUniqueConstraint:
-            tableName: books
-            columnNames: isbn
-            constraintName: uk_books_isbn
+              - column:
+                  name: name
+                  type: VARCHAR(200)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: price
+                  type: NUMERIC(12,2)
+
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: explanation
+                  type: TEXT
 
         - addForeignKeyConstraint:
-            baseTableName: books
+            baseTableName: products
             baseColumnNames: category_id
 
             referencedTableName: categories
             referencedColumnNames: id
 
-            constraintName: fk_books_category
-
+            constraintName: fk_products_category
             onDelete: RESTRICT

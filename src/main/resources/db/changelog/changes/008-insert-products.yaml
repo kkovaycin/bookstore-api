@@ -1,0 +1,51 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 008-insert-products
+      author: kubra
+
+      changes:
+
+        - insert:
+            tableName: products
+
+            columns:
+
+              - column:
+                  name: category_id
+                  valueComputed: >
+                    (SELECT id FROM categories WHERE name = 'Roman')
+
+              - column:
+                  name: name
+                  value: Suç ve Ceza
+
+              - column:
+                  name: price
+                  valueNumeric: 249.90
+
+              - column:
+                  name: explanation
+                  value: Dostoyevski tarafından yazılmış klasik bir roman.
+
+        - insert:
+            tableName: products
+
+            columns:
+
+              - column:
+                  name: category_id
+                  valueComputed: >
+                    (SELECT id FROM categories WHERE name = 'Bilim Kurgu')
+
+              - column:
+                  name: name
+                  value: Dune
+
+              - column:
+                  name: price
+                  valueNumeric: 329.90
+
+              - column:
+                  name: explanation
+                  value: Frank Herbert tarafından yazılmış bilim kurgu romanı.

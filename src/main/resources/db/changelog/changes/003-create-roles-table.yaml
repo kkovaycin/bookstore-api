@@ -1,13 +1,13 @@
 databaseChangeLog:
 
   - changeSet:
-      id: 002-create-authors-table
+      id: 003-create-roles-table
       author: kubra
 
       changes:
 
         - createTable:
-            tableName: authors
+            tableName: roles
 
             columns:
 
@@ -17,19 +17,17 @@ databaseChangeLog:
 
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_authors
+                    primaryKeyName: pk_roles
                     nullable: false
 
               - column:
-                  name: first_name
-                  type: VARCHAR(100)
+                  name: name
+                  type: VARCHAR(50)
 
                   constraints:
                     nullable: false
 
-              - column:
-                  name: last_name
-                  type: VARCHAR(100)
-
-                  constraints:
-                    nullable: false
+        - addUniqueConstraint:
+            tableName: roles
+            columnNames: name
+            constraintName: uk_roles_name

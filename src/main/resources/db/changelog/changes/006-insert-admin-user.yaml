@@ -1,0 +1,38 @@
+databaseChangeLog:
+databaseChangeLog:
+
+  - changeSet:
+      id: 006-insert-admin-user
+      author: kubra
+
+      changes:
+
+        - insert:
+            tableName: app_users
+
+            columns:
+
+              - column:
+                  name: first_name
+                  value: Admin
+
+              - column:
+                  name: last_name
+                  value: User
+
+              - column:
+                  name: username
+                  value: admin
+
+              - column:
+                  name: email
+                  value: abc@abc.com
+
+              - column:
+                  name: password
+                  value: "$2y$10$Q3bY6aqXafXv1FRaxyQF4.LW0UGkS5qTzDe0/1F2Q0Asqfj0cMWpK"
+
+              - column:
+                  name: role_id
+                  valueComputed: >
+                    (SELECT id FROM roles WHERE name = 'ADMIN')
