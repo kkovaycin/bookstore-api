@@ -51,6 +51,7 @@ public class ProductService {
                 request.name().trim(),
                 request.price(),
                 normalizeExplanation(request.explanation()),
+                normalizeBase64Image(request.base64Image()),
                 category
         );
 
@@ -65,6 +66,7 @@ public class ProductService {
             ProductRequest request
     ) {
         Product product = findProductById(id);
+
         Category category =
                 findCategoryById(request.categoryId());
 
@@ -72,6 +74,7 @@ public class ProductService {
                 request.name().trim(),
                 request.price(),
                 normalizeExplanation(request.explanation()),
+                normalizeBase64Image(request.base64Image()),
                 category
         );
 
@@ -90,7 +93,7 @@ public class ProductService {
         return productRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "Ürün bulunamadı. ID: " + id
+                                "Product not found. ID: " + id
                         )
                 );
     }
@@ -99,7 +102,7 @@ public class ProductService {
         return categoryRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "Kategori bulunamadı. ID: " + id
+                                "Category not found. ID: " + id
                         )
                 );
     }
@@ -107,11 +110,26 @@ public class ProductService {
     private String normalizeExplanation(
             String explanation
     ) {
-        if (explanation == null
-                || explanation.isBlank()) {
+        if (
+                explanation == null
+                        || explanation.isBlank()
+        ) {
             return null;
         }
 
         return explanation.trim();
+    }
+
+    private String normalizeBase64Image(
+            String base64Image
+    ) {
+        if (
+                base64Image == null
+                        || base64Image.isBlank()
+        ) {
+            return null;
+        }
+
+        return base64Image.trim();
     }
 }

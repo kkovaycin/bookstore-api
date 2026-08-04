@@ -9,6 +9,7 @@ public record ProductResponse(
         String name,
         BigDecimal price,
         String explanation,
+        String base64Image,
         Long categoryId,
         String categoryName
 ) {
@@ -19,6 +20,7 @@ public record ProductResponse(
                 product.getName(),
                 product.getPrice(),
                 product.getExplanation(),
+                product.getBase64Image(),
                 product.getCategory().getId(),
                 product.getCategory().getName()
         );

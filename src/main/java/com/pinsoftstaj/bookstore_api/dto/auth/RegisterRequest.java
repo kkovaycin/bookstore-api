@@ -6,31 +6,37 @@ import jakarta.validation.constraints.Size;
 
 public record RegisterRequest(
 
-        @NotBlank(message = "Ad boş bırakılamaz")
-        @Size(max = 100, message = "Ad en fazla 100 karakter olabilir")
+        @NotBlank(message = "First name cannot be blank")
+        @Size(
+                max = 100,
+                message = "First name cannot exceed 100 characters"
+        )
         String firstName,
 
-        @NotBlank(message = "Soyad boş bırakılamaz")
-        @Size(max = 100, message = "Soyad en fazla 100 karakter olabilir")
+        @NotBlank(message = "Last name cannot be blank")
+        @Size(
+                max = 100,
+                message = "Last name cannot exceed 100 characters"
+        )
         String lastName,
 
-        @NotBlank(message = "Kullanıcı adı boş bırakılamaz")
+        @NotBlank(message = "Username cannot be blank")
         @Size(
                 min = 3,
                 max = 100,
-                message = "Kullanıcı adı 3 ile 100 karakter arasında olmalıdır"
+                message = "Username must be between 3 and 100 characters"
         )
         String username,
 
-        @NotBlank(message = "E-posta boş bırakılamaz")
-        @Email(message = "Geçerli bir e-posta adresi girilmelidir")
+        @NotBlank(message = "Email cannot be blank")
+        @Email(message = "Email must be valid")
         String email,
 
-        @NotBlank(message = "Şifre boş bırakılamaz")
+        @NotBlank(message = "Password cannot be blank")
         @Size(
                 min = 8,
                 max = 100,
-                message = "Şifre 8 ile 100 karakter arasında olmalıdır"
+                message = "Password must be between 8 and 100 characters"
         )
         String password
 

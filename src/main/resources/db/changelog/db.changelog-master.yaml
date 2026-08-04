@@ -24,5 +24,8 @@ databaseChangeLog:
   - include:
       file: db/changelog/changes/008-insert-products.yaml
 
+  - include:
+      file: db/changelog/changes/009-add-base64-image-to-products.yaml
+
 
 

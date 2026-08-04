@@ -1,0 +1,16 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 009-add-base64-image-to-products
+      author: kubra
+
+      changes:
+
+        - addColumn:
+            tableName: products
+
+            columns:
+
+              - column:
+                  name: base64_image
+                  type: TEXT

@@ -9,28 +9,30 @@ import java.math.BigDecimal;
 
 public record ProductRequest(
 
-        @NotBlank(message = "Ürün adı boş bırakılamaz")
+        @NotBlank(message = "Product name cannot be blank")
         @Size(
                 max = 200,
-                message = "Ürün adı en fazla 200 karakter olabilir"
+                message = "Product name cannot exceed 200 characters"
         )
         String name,
 
-        @NotNull(message = "Fiyat boş bırakılamaz")
+        @NotNull(message = "Price cannot be null")
         @DecimalMin(
                 value = "0.0",
                 inclusive = false,
-                message = "Fiyat sıfırdan büyük olmalıdır"
+                message = "Price must be greater than zero"
         )
         BigDecimal price,
 
         @Size(
                 max = 5000,
-                message = "Açıklama en fazla 5000 karakter olabilir"
+                message = "Explanation cannot exceed 5000 characters"
         )
         String explanation,
 
-        @NotNull(message = "Kategori seçilmelidir")
+        String base64Image,
+
+        @NotNull(message = "Category must be selected")
         Long categoryId
 
 ) {

@@ -30,6 +30,12 @@ public class Product {
     )
     private String explanation;
 
+    @Column(
+            name = "base64_image",
+            columnDefinition = "TEXT"
+    )
+    private String base64Image;
+
     @ManyToOne(
             fetch = FetchType.LAZY,
             optional = false
@@ -50,11 +56,13 @@ public class Product {
             String name,
             BigDecimal price,
             String explanation,
+            String base64Image,
             Category category
     ) {
         this.name = name;
         this.price = price;
         this.explanation = explanation;
+        this.base64Image = base64Image;
         this.category = category;
     }
 
@@ -62,11 +70,13 @@ public class Product {
             String name,
             BigDecimal price,
             String explanation,
+            String base64Image,
             Category category
     ) {
         this.name = name;
         this.price = price;
         this.explanation = explanation;
+        this.base64Image = base64Image;
         this.category = category;
     }
 
@@ -84,6 +94,10 @@ public class Product {
 
     public String getExplanation() {
         return explanation;
+    }
+
+    public String getBase64Image() {
+        return base64Image;
     }
 
     public Category getCategory() {
