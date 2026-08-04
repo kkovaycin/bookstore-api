@@ -34,6 +34,52 @@ public class ProductService {
                 .toList();
     }
 
+    public List<ProductResponse> search(
+            String name,
+            List<Long> categoryIds
+    ) {
+        String normalizedName =
+                name == null
+                        ? null
+                        : name.trim();
+
+        boolean hasName =
+                normalizedName != null
+                        && !normalizedName.isBlank();
+
+        boolean hasCategories =
+                categoryIds != null
+                        && !categoryIds.isEmpty();
+
+        List<Product> products;
+
+        if (hasName && hasCategories) {
+            products =
+                    productRepository.findByNameOrCategoryIds(
+                            normalizedName,
+                            categoryIds
+                    );
+        } else if (hasName) {
+            products =
+                    productRepository
+                            .findByNameContainingIgnoreCase(
+                                    normalizedName
+                            );
+        } else if (hasCategories) {
+            products =
+                    productRepository.findByCategoryIdIn(
+                            categoryIds
+                    );
+        } else {
+            products = productRepository.findAll();
+        }
+
+        return products
+                .stream()
+                .map(ProductResponse::from)
+                .toList();
+    }
+
     public ProductResponse findById(Long id) {
         return ProductResponse.from(
                 findProductById(id)

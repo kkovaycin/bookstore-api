@@ -30,6 +30,22 @@ public class ProductController {
         );
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductResponse>> search(
+            @RequestParam(required = false)
+            String name,
+
+            @RequestParam(required = false)
+            List<Long> categoryIds
+    ) {
+        return ResponseEntity.ok(
+                productService.search(
+                        name,
+                        categoryIds
+                )
+        );
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> findById(
             @PathVariable Long id
